@@ -1,0 +1,25 @@
+{
+  "name": "wdi-project-4-client",
+  "description": "The Angular client for wdi-project-4.",
+  "main": "index.js",
+  "authors": [
+    "zuspadt79 <samuel.hey@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/zuspadt79/wdi-project-4-client",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-resource": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "angular-jwt": "^0.0.9",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1"
+  }
+}

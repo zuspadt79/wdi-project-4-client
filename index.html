@@ -1,0 +1,30 @@
+<!doctype html>
+<html ng-app="bibliobibulio">
+<head>
+  <base href="/" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <title>Bibliobibul.io</title>
+</head>
+<body ng-controller="MainCtrl as main">
+  <h1>Bibliobibul.io</h1>
+
+  <h4>Search Books</h4>
+  <div class='container-fluid'>
+    <form ng-submit="main.getBooks(main.name)">
+    <input type="text" ng-model="main.name" >
+    </form>
+  </div>
+
+  <ul>
+    <li ng-repeat="book in main.books">
+      <img ng-src="{{ book.volumeInfo.imageLinks.thumbnail }}" />
+      {{ book.volumeInfo.title }}
+    </li>
+  </ul>
+</body>
+</html>
