@@ -2,15 +2,23 @@ angular
 .module('bibliobibulio')
 .controller("MainCtrl", MainCtrl);
 
-MainCtrl.$inject = ["$http"];
-function MainCtrl($http) {
+MainCtrl.$inject = ["$http", "$rootScope", "CurrentUserService", "$state"];
+function MainCtrl($http, $rootScope, CurrentUserService, $state) {
   var vm = this;
-  vm.getBooks = function(name) {
-    $http
-    .get("https://www.googleapis.com/books/v1/volumes?q=" + name + "&orderBy=relevance&langRestrict=en&printType=books&projection=lite&filter=paid-ebooks&maxResults=10&key=AIzaSyC0r7s2vIEhQLlGxNtNZayKQUKLw8EyJUY")
-    .then(function(response){
-      console.log(response.data);
-      vm.books = response.data.items;
-    });
+  vm.user = CurrentUserService.getUser();
+
+  vm.logout = () => {
+    event.preventDefault();
+    CurrentUserService.clearUser();
   };
+
+  $rootScope.$on("loggedIn", () => {
+    vm.user = CurrentUserService.getUser();
+    // $state.go("");
+  });
+
+  $rootScope.$on("loggedOut", () => {
+    vm.user = null;
+    // $state.go("home");
+  });
 }

@@ -1,0 +1,31 @@
+<h1>Search for books</h1>
+
+<div class='container-fluid'>
+  <form ng-submit="booksSearch.getBooks(booksSearch.name)">
+    <input type="text" ng-model="booksSearch.name" placeholder="Search Books">
+    <input type="submit" value="Search">
+  </form>
+</div>
+
+<ul ng-hide="booksSearch.book">
+  <li ng-repeat="book in booksSearch.books">
+    <ul>
+      <li ng-click="booksSearch.bookInfo(book)">
+        <img ng-src="{{ book.volumeInfo.imageLinks.thumbnail }}" />
+        <br>
+        <h3>{{ book.volumeInfo.title }}</h3>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div ng-show="booksSearch.book" class="bookContent">
+  <img ng-src="{{ booksSearch.book.volumeInfo.imageLinks.thumbnail }}">
+  <h1>{{ booksSearch.book.volumeInfo.title }}</h1>
+  <ul>
+    <li ng-repeat="author in booksSearch.book.volumeInfo.authors">{{ author }}</li>
+  </ul>
+  <p> {{ booksSearch.book.volumeInfo.description }}</p>
+  <button ng-click="booksSearch.back()">Back</button>
+  <button>Add to reading list</button>
+</div>

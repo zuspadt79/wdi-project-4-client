@@ -22,7 +22,16 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider){
     templateUrl: "/js/views/register.html",
     controller: "RegisterCtrl as register"
   })
-;
+  .state("usersShow", {
+    url: "/users/:id",
+    templateUrl: "/js/views/users/show.html",
+    controller: "usersShowCtrl as usersShow"
+  })
+  .state("booksSearch", {
+    url: "/books/search",
+    templateUrl: "/js/views/books/search.html",
+    controller: "booksSearchCtrl as booksSearch"
+  });
 
   $urlRouterProvider.otherwise("/");
 

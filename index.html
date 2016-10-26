@@ -2,29 +2,37 @@
 <html ng-app="bibliobibulio">
 <head>
   <base href="/" />
-
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
-
   <link rel="stylesheet" href="css/style.css">
   <title>Bibliobibul.io</title>
 </head>
 <body ng-controller="MainCtrl as main">
-  <h1>Bibliobibul.io</h1>
+  <nav>
+    <h1>bibliobibul.io</h1>
+    <ul>
+      <li><a ui-sref="home">Home</a></li>
+      <li ng-hide="main.user"><a ui-sref="register">Register</a></li>
+      <li ng-hide="main.user"><a ui-sref="login">Login</a></li>
+      <li ng-show="main.user"><a ng-click="main.logout()">Logout</a></li>
+      <li ng-show="main.user"><a ui-sref="usersShow({ id: main.user.id })">{{ main.user.username }}</a></li>
+      <li ng-show="main.user"><a ui-sref="booksSearch">Search for books</a></li>
+    </ul>
+  </nav>
+  <!-- <h1>Bibliobibuli</h1> -->
 
-  <h4>Search Books</h4>
-  <div class='container-fluid'>
+  <!-- <div class='container-fluid'>
     <form ng-submit="main.getBooks(main.name)">
-    <input type="text" ng-model="main.name" >
+      <input type="text" ng-model="main.name" placeholder="Search Books">
     </form>
-  </div>
+  </div> -->
 
-  <ul>
+  <!-- <ul>
     <li ng-repeat="book in main.books">
       <img ng-src="{{ book.volumeInfo.imageLinks.thumbnail }}" />
+      <br>
       {{ book.volumeInfo.title }}
     </li>
-  </ul>
+  </ul> -->
+  <main class="container" ui-view></main>
 </body>
 </html>

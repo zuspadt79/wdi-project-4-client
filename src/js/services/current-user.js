@@ -2,24 +2,28 @@ angular
   .module("bibliobibulio")
   .service("CurrentUserService", CurrentUserService);
 
-  CurrentUserService.$inject = ["TokenService", "$rootScope"];
-  function CurrentUserService(TokenService, $rootScope){
-    let currentUser = TokenService.decodeToken();
+CurrentUserService.$inject = ["$rootScope", "TokenService", "User"];
+function CurrentUserService($rootScope, TokenService, User){
+  let currentUser = TokenService.decodeToken(); // <-- currentUser === 5
 
-    return {
-      user: currentUser,
-      saveUser(user) {
-        user.id     = user.id ? user.id : user._id;
-        currentUser = user;
-        $rootScope.$broadcast("loggedIn");
-      },
-      getUser(user){
-        return currentUser;
-      },
-      clearUser(){
-        currentUser = null;
-        TokenService.clearToken();
-        $rootScope.$broadcast("loggedOut");
-      }
-    };
+  if (currentUser) {
+    currentUser = User.get(currentUser);
   }
+
+
+  return {
+    user: currentUser,
+    saveUser(user) {
+      currentUser = user;
+      $rootScope.$broadcast("loggedIn");
+    },
+    getUser() {
+      return currentUser;
+    },
+    clearUser() {
+      currentUser = null;
+      TokenService.clearToken();
+      $rootScope.$broadcast("loggedOut");
+    }
+  };
+}
