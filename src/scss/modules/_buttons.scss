@@ -1,0 +1,14 @@
+.btn {
+  border-radius: 0;
+  font-family: $header-font;
+  font-size: 18px;
+  &.btn-primary {
+    background: $blue;
+    border-color: $blue;
+    &:hover {
+      background: $black;
+      color: $white;
+      border-color: $black;
+    }
+  }
+}

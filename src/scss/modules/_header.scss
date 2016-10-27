@@ -1,0 +1,12 @@
+.navbar {
+  background: $white;
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 0;
+
+  .navbar-brand {
+    font-family: $logo-font;
+    color: $blue;
+    font-size: 28px;
+  }
+}

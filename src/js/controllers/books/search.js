@@ -9,16 +9,19 @@ function booksSearchCtrl($http, API, $state, Book, CurrentUserService) {
   vm.book = "";
   vm.user = CurrentUserService.getUser();
 
-  vm.getBooks = function(name) {
+  getBooks();
+
+  vm.getBooks = getBooks;
+
+  function getBooks(name) {
+    if (!name) name = "Javascript";
     $http
     .get("https://www.googleapis.com/books/v1/volumes?q=" + name + "&orderBy=relevance&langRestrict=en&printType=books&projection=lite&filter=paid-ebooks&maxResults=10&key=AIzaSyC0r7s2vIEhQLlGxNtNZayKQUKLw8EyJUY")
     .then(function(response){
       vm.books = response.data.items;
       vm.name = "";
-      console.log(response);
-
     });
-  };
+  }
 
   vm.toRead = function(object){
     let book = {
