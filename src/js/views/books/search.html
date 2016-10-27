@@ -3,7 +3,7 @@
 <div class='container-fluid'>
   <form ng-submit="booksSearch.getBooks(booksSearch.name)">
     <input type="text" ng-model="booksSearch.name" placeholder="Search Books">
-    <input type="submit" value="Search">
+    <input class="btn btn-primary" type="submit" value="Search">
   </form>
 </div>
 
@@ -23,9 +23,10 @@
   <img ng-src="{{ booksSearch.book.volumeInfo.imageLinks.thumbnail }}">
   <h1>{{ booksSearch.book.volumeInfo.title }}</h1>
   <ul>
-    <li ng-repeat="author in booksSearch.book.volumeInfo.authors">{{ author }}</li>
+    <li ng-repeat="author in booksSearch.book.volumeInfo.authors"><h4>{{ author }}</h4></li>
   </ul>
   <p> {{ booksSearch.book.volumeInfo.description }}</p>
-  <button ng-click="booksSearch.back()">Back</button>
-  <button>Add to reading list</button>
+  <button class="btn btn-primary" ng-click="booksSearch.back()">Back</button>
+  <button class="btn btn-success" ng-click="booksSearch.toRead(booksSearch.book)">Add to Reading list</button>
+  <button class="btn btn-warning" ng-click="booksSearch.read(booksSearch.book)">Mark as Read</button>
 </div>

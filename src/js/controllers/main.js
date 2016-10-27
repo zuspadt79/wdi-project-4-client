@@ -14,11 +14,11 @@ function MainCtrl($http, $rootScope, CurrentUserService, $state) {
 
   $rootScope.$on("loggedIn", () => {
     vm.user = CurrentUserService.getUser();
-    // $state.go("");
+    $state.go("booksSearch");
   });
 
   $rootScope.$on("loggedOut", () => {
     vm.user = null;
-    // $state.go("home");
+    $state.go("home");
   });
 }
