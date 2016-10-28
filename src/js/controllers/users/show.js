@@ -11,7 +11,7 @@ function usersShowCtrl(User, $stateParams, Book) {
     .$promise
     .then(user => {
       vm.user = user;
-      vm.filterByRead();
+      vm.filterByToRead();
     });
 
   vm.filterByRead = function(){
