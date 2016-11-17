@@ -1,3 +1,3 @@
 angular
   .module("bibliobibulio")
-  .constant("API", `http://localhost:3000/api`);
+  .constant("API", `https://bibliobibuli-api.herokuapp.com/api`);

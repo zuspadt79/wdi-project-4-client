@@ -166,3 +166,10 @@ gulp.task("default", [
   'watch',
   'nodemon'
 ]);
+
+gulp.task("deploy", [
+  'bower',
+  'sass',
+  'copy',
+  'scripts'
+]);
